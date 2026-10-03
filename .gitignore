@@ -1,0 +1,16 @@
+# 依赖目录（npm install 可重建，体积巨大）
+node_modules/
+
+# 前端构建产物（npm run build 可重新生成）
+dist/
+
+# 后端构建产物
+target/
+
+# IDE 配置（每台电脑自动生成）
+.idea/
+*.iml
+
+# 系统杂项
+.DS_Store
+Thumbs.db

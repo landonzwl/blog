@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张文龙 | 软件工程学生</title>
+    <style id="theme-vars">
+/* Personal Blog — 暖象牙编辑感配色与字体 */
+
+:root {
+  /* Core page surface */
+  --pblog-background: #FAF9F6;
+  --pblog-foreground: #171412;
+
+  /* Card / container surfaces */
+  --pblog-card: #FFFFFF;
+  --pblog-card-foreground: #171412;
+  --pblog-popover: #FFFFFF;
+  --pblog-popover-foreground: #171412;
+
+  /* Primary brand — terracotta / ochre */
+  --pblog-primary: #B85C38;
+  --pblog-primary-foreground: #FFFFFF;
+
+  /* Muted / secondary surfaces */
+  --pblog-muted: #F5F3EE;
+  --pblog-muted-foreground: #5A5651;
+
+  /* Borders and inputs */
+  --pblog-border: #E8E4DC;
+  --pblog-input: #E8E4DC;
+  --pblog-ring: #B85C38;
+
+  /* Semantic state colors */
+  --pblog-state-success: #2D6A4F;
+  --pblog-state-warning: #B7791F;
+  --pblog-state-error: #9B2C2C;
+  --pblog-state-info: #3B5B8C;
+
+  /* Extended ink scale */
+  --pblog-ink: #171412;
+  --pblog-ink-2: #5A5651;
+  --pblog-ink-3: #8C877F;
+  --pblog-line: #E8E4DC;
+  --pblog-surface: #FFFFFF;
+  --pblog-surface-2: #F5F3EE;
+
+  /* Radius scale */
+  --pblog-radius-sm: 4px;
+  --pblog-radius-md: 8px;
+  --pblog-radius-lg: 16px;
+  --pblog-radius-pill: 999px;
+
+  /* Shadow scale */
+  --pblog-shadow-1: 0 1px 2px rgba(23, 20, 18, 0.05), 0 1px 1px rgba(23, 20, 18, 0.03);
+  --pblog-shadow-2: 0 8px 24px -8px rgba(23, 20, 18, 0.12);
+  --pblog-shadow-3: 0 24px 60px -20px rgba(23, 20, 18, 0.22);
+
+  /* Typography */
+  --pblog-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --pblog-font-mono: "SF Mono", "Fira Code", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+/* Base typography settings */
+html {
+  font-family: var(--pblog-font-sans);
+  background-color: var(--pblog-background);
+  color: var(--pblog-foreground);
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accent text color helper */
+.text-brand { color: var(--pblog-primary); }
+.bg-brand { background-color: var(--pblog-primary); }
+.border-brand { border-color: var(--pblog-primary); }
+
+/* Selection */
+::selection {
+  background-color: rgba(184, 92, 56, 0.18);
+  color: var(--pblog-ink);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--pblog-background);
+    --color-foreground: var(--pblog-foreground);
+    --color-card: var(--pblog-card);
+    --color-card-foreground: var(--pblog-card-foreground);
+    --color-popover: var(--pblog-popover);
+    --color-popover-foreground: var(--pblog-popover-foreground);
+    --color-primary: var(--pblog-primary);
+    --color-primary-foreground: var(--pblog-primary-foreground);
+    --color-muted: var(--pblog-muted);
+    --color-muted-foreground: var(--pblog-muted-foreground);
+    --color-border: var(--pblog-border);
+    --color-input: var(--pblog-input);
+    --color-ring: var(--pblog-ring);
+    --radius-sm: var(--pblog-radius-sm);
+    --radius-md: var(--pblog-radius-md);
+    --radius-lg: var(--pblog-radius-lg);
+  }
+  @layer base {
+    body { background: var(--pblog-background); color: var(--pblog-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--pblog-background); }
+      .text-background { color: var(--pblog-background); }
+      .border-background { border-color: var(--pblog-background); }
+      .ring-background { --tw-ring-color: var(--pblog-background); }
+      .bg-foreground { background-color: var(--pblog-foreground); }
+      .text-foreground { color: var(--pblog-foreground); }
+      .border-foreground { border-color: var(--pblog-foreground); }
+      .ring-foreground { --tw-ring-color: var(--pblog-foreground); }
+      .bg-card { background-color: var(--pblog-card); }
+      .text-card { color: var(--pblog-card); }
+      .border-card { border-color: var(--pblog-card); }
+      .ring-card { --tw-ring-color: var(--pblog-card); }
+      .bg-card-foreground { background-color: var(--pblog-card-foreground); }
+      .text-card-foreground { color: var(--pblog-card-foreground); }
+      .border-card-foreground { border-color: var(--pblog-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--pblog-card-foreground); }
+      .bg-popover { background-color: var(--pblog-popover); }
+      .text-popover { color: var(--pblog-popover); }
+      .border-popover { border-color: var(--pblog-popover); }
+      .ring-popover { --tw-ring-color: var(--pblog-popover); }
+      .bg-popover-foreground { background-color: var(--pblog-popover-foreground); }
+      .text-popover-foreground { color: var(--pblog-popover-foreground); }
+      .border-popover-foreground { border-color: var(--pblog-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--pblog-popover-foreground); }
+      .bg-primary { background-color: var(--pblog-primary); }
+      .text-primary { color: var(--pblog-primary); }
+      .border-primary { border-color: var(--pblog-primary); }
+      .ring-primary { --tw-ring-color: var(--pblog-primary); }
+      .bg-primary-foreground { background-color: var(--pblog-primary-foreground); }
+      .text-primary-foreground { color: var(--pblog-primary-foreground); }
+      .border-primary-foreground { border-color: var(--pblog-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--pblog-primary-foreground); }
+      .bg-muted { background-color: var(--pblog-muted); }
+      .text-muted { color: var(--pblog-muted); }
+      .border-muted { border-color: var(--pblog-muted); }
+      .ring-muted { --tw-ring-color: var(--pblog-muted); }
+      .bg-muted-foreground { background-color: var(--pblog-muted-foreground); }
+      .text-muted-foreground { color: var(--pblog-muted-foreground); }
+      .border-muted-foreground { border-color: var(--pblog-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--pblog-muted-foreground); }
+      .bg-border { background-color: var(--pblog-border); }
+      .text-border { color: var(--pblog-border); }
+      .border-border { border-color: var(--pblog-border); }
+      .ring-border { --tw-ring-color: var(--pblog-border); }
+      .bg-input { background-color: var(--pblog-input); }
+      .text-input { color: var(--pblog-input); }
+      .border-input { border-color: var(--pblog-input); }
+      .ring-input { --tw-ring-color: var(--pblog-input); }
+      .bg-ring { background-color: var(--pblog-ring); }
+      .text-ring { color: var(--pblog-ring); }
+      .border-ring { border-color: var(--pblog-ring); }
+      .ring-ring { --tw-ring-color: var(--pblog-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50">跳转到主要内容</a>
+
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="text-lg font-semibold tracking-tight text-foreground">张文龙</a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+        <a href="#projects" class="hover:text-primary transition-colors duration-200">作品</a>
+        <a href="#articles" class="hover:text-primary transition-colors duration-200">文章</a>
+        <a href="#about" class="hover:text-primary transition-colors duration-200">关于</a>
+        <a href="#contact" class="hover:text-primary transition-colors duration-200">联系</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-muted-foreground hover:text-foreground" aria-label="打开菜单">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background">
+      <div class="px-6 py-4 flex flex-col gap-4 text-sm font-medium text-muted-foreground">
+        <a href="#projects" class="hover:text-primary transition-colors duration-200">作品</a>
+        <a href="#articles" class="hover:text-primary transition-colors duration-200">文章</a>
+        <a href="#about" class="hover:text-primary transition-colors duration-200">关于</a>
+        <a href="#contact" class="hover:text-primary transition-colors duration-200">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="hero" class="pt-32 pb-24 md:pt-48 md:pb-36 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium tracking-widest uppercase text-primary mb-5">Software Engineering Portfolio</p>
+          <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-8 leading-[1.1]">
+            张文龙
+          </h1>
+          <p class="text-xl md:text-2xl text-muted-foreground mb-6 leading-relaxed">
+            山东科技大学软件工程专业 2027 届本科生<br class="hidden md:block">
+            Java 后端 / Vue3 前端 / 运维部署
+          </p>
+          <p class="text-base md:text-lg text-muted-foreground/80 mb-10 max-w-2xl leading-relaxed">
+            专注于企业级 Web 应用开发与系统部署，熟悉 SpringBoot、MySQL、Redis、Docker 与腾讯云运维。相信扎实的代码与清晰的文档同样重要。
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#projects" class="group inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity duration-200">
+              查看作品
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"></i>
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-2 border border-border bg-card text-card-foreground px-6 py-3 rounded-lg font-medium hover:border-primary hover:text-primary transition-colors duration-200">
+              联系我
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-20 md:py-28 px-6 border-t border-border">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-12 gap-10 md:gap-16">
+          <div class="md:col-span-4">
+            <p class="text-sm font-medium tracking-widest uppercase text-primary mb-3">About</p>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">关于我</h2>
+          </div>
+          <div class="md:col-span-8 space-y-6 text-muted-foreground leading-relaxed">
+            <p class="text-lg text-foreground font-medium">
+              我是张文龙，一名来自山东济南的软件工程专业本科生。
+            </p>
+            <p>
+              在校期间系统学习了 Java、SpringBoot、MyBatis-Plus、MySQL、Redis 等后端技术，也熟悉 Vue3 + TypeScript 前端开发。课外接触了 UDP/Socket 网络报文处理、RAG 大模型应用开发，以及 Docker 容器编排与 Linux 基础运维。
+            </p>
+            <p>
+              参与过企业实习与实验室横向课题，能够独立完成业务模块编码、接口实现、数据库设计、前后端联调自测与系统部署。同时有两年团委办公室干事经历，具备跨部门沟通与文档整理能力，做事踏实严谨，愿意服从团队岗位安排。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-20 md:py-28 px-6 bg-muted/30">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 md:mb-16">
+          <div>
+            <p class="text-sm font-medium tracking-widest uppercase text-primary mb-3">Selected Work</p>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">精选作品</h2>
+          </div>
+          <p class="text-muted-foreground max-w-md">企业实习、个人项目与实验室课题中的实践成果。</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <article class="group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-[0_8px_24px_-8px_rgba(23,20,18,0.12)] hover:-translate-y-1 transition-all duration-300">
+            <div class="aspect-[16/10] overflow-hidden bg-muted">
+              <img src="../assets/image_0_r53wpn.jpg" alt="RAG 智能工单系统" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs font-medium text-muted-foreground">2024.07 ~ 2024.08</span>
+                <span class="px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">个人项目</span>
+              </div>
+              <h3 class="text-xl font-semibold text-card-foreground mb-2">RAG 智能工单系统</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">面向运维故障报修场景的大模型应用原型，支持自然语言问答、知识库检索与自动工单生成，部署于腾讯云服务器。</p>
+            </div>
+          </article>
+
+          <article class="group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-[0_8px_24px_-8px_rgba(23,20,18,0.12)] hover:-translate-y-1 transition-all duration-300">
+            <div class="aspect-[16/10] overflow-hidden bg-muted">
+              <img src="../assets/image_1_r53wpn.jpg" alt="轨道交通 iART 仿真平台" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs font-medium text-muted-foreground">2025.07 ~ 2025.08</span>
+                <span class="px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">实验室课题</span>
+              </div>
+              <h3 class="text-xl font-semibold text-card-foreground mb-2">轨道交通 iART 仿真平台</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">CTCS-3 级列控系统联合仿真平台，参与 RBC 无线闭塞中心节点开发，实现消息按位编解码、闭塞区间定位与行车许可计算。</p>
+            </div>
+          </article>
+
+          <article class="group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-[0_8px_24px_-8px_rgba(23,20,18,0.12)] hover:-translate-y-1 transition-all duration-300">
+            <div class="aspect-[16/10] overflow-hidden bg-muted">
+              <img src="../assets/image_2_r53wpn.jpg" alt="智能排班系统" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs font-medium text-muted-foreground">2024.09 ~ 2025.10</span>
+                <span class="px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">校内实践</span>
+              </div>
+              <h3 class="text-xl font-semibold text-card-foreground mb-2">智能排班系统</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">基于 Spring Boot 的多角色权限排班小程序，引入 Redis 缓存与遗传算法优化排班约束，提升排班效率约 40%。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="articles" class="py-20 md:py-28 px-6 border-t border-border">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-12 md:mb-16">
+          <p class="text-sm font-medium tracking-widest uppercase text-primary mb-3">Writing</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">近期文章</h2>
+        </div>
+
+        <div class="border-t border-border divide-y divide-border">
+          <a href="#" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 py-6 hover:bg-muted/30 transition-colors duration-200 -mx-4 px-4 rounded-lg">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-sm text-muted-foreground font-mono">2025.09</span>
+                <span class="px-2 py-0.5 bg-muted text-muted-foreground text-xs rounded-full">后端工程</span>
+              </div>
+              <h3 class="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-200">SpringBoot 项目中的全局异常处理与接口规范</h3>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200"></i>
+          </a>
+          <a href="#" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 py-6 hover:bg-muted/30 transition-colors duration-200 -mx-4 px-4 rounded-lg">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-sm text-muted-foreground font-mono">2025.08</span>
+                <span class="px-2 py-0.5 bg-muted text-muted-foreground text-xs rounded-full">运维</span>
+              </div>
+              <h3 class="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-200">基于 Docker 与腾讯云的服务部署实践</h3>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200"></i>
+          </a>
+          <a href="#" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 py-6 hover:bg-muted/30 transition-colors duration-200 -mx-4 px-4 rounded-lg">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-sm text-muted-foreground font-mono">2025.06</span>
+                <span class="px-2 py-0.5 bg-muted text-muted-foreground text-xs rounded-full">成长</span>
+              </div>
+              <h3 class="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-200">我的软件工程学习路线与实习复盘</h3>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200"></i>
+          </a>
+          <a href="#" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 py-6 hover:bg-muted/30 transition-colors duration-200 -mx-4 px-4 rounded-lg">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-sm text-muted-foreground font-mono">2025.04</span>
+                <span class="px-2 py-0.5 bg-muted text-muted-foreground text-xs rounded-full">AI 应用</span>
+              </div>
+              <h3 class="text-lg font-medium text-foreground group-hover:text-primary transition-colors duration-200">RAG 知识库检索与智能工单生成思路</h3>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-20 md:py-28 px-6 bg-muted/30">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-12 gap-10 md:gap-16">
+          <div class="md:col-span-5">
+            <p class="text-sm font-medium tracking-widest uppercase text-primary mb-3">Contact</p>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-6">联系我</h2>
+            <p class="text-muted-foreground leading-relaxed">
+              欢迎交流技术问题、实习机会或项目合作。我会尽快回复邮件。
+            </p>
+          </div>
+          <div class="md:col-span-7 space-y-6">
+            <a href="mailto:1938463598@qq.com" class="group flex items-center gap-4 p-5 bg-card border border-border rounded-xl hover:border-primary transition-colors duration-200">
+              <div class="w-11 h-11 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-sm text-muted-foreground">邮箱</p>
+                <p class="text-foreground font-medium group-hover:text-primary transition-colors duration-200">1938463598@qq.com</p>
+              </div>
+            </a>
+            <div class="flex items-center gap-4 p-5 bg-card border border-border rounded-xl">
+              <div class="w-11 h-11 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-sm text-muted-foreground">电话</p>
+                <p class="text-foreground font-medium">195-8897-8742</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-5 bg-card border border-border rounded-xl">
+              <div class="w-11 h-11 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-sm text-muted-foreground">所在地</p>
+                <p class="text-foreground font-medium">山东 / 济南</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="py-10 px-6 border-t border-border bg-background">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-muted-foreground">© 2025 张文龙. All rights reserved.</p>
+      <a href="#hero" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+        回到顶部
+        <i data-lucide="arrow-up" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+  </script>
+
+    <style>
+    /* Semantic token fallback for browsers without Tailwind v4 theme support */
+    :root {
+      --background: var(--pblog-background);
+      --foreground: var(--pblog-foreground);
+      --card: var(--pblog-card);
+      --card-foreground: var(--pblog-card-foreground);
+      --popover: var(--pblog-popover);
+      --popover-foreground: var(--pblog-popover-foreground);
+      --primary: var(--pblog-primary);
+      --primary-foreground: var(--pblog-primary-foreground);
+      --muted: var(--pblog-muted);
+      --muted-foreground: var(--pblog-muted-foreground);
+      --border: var(--pblog-border);
+      --input: var(--pblog-input);
+      --ring: var(--pblog-ring);
+    }
+    html { scroll-behavior: smooth; }
+  </style>
+</body>
+</html>
