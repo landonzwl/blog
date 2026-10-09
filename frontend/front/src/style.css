@@ -1,43 +1,43 @@
 @import "tailwindcss";
 
 /* ============================================================
-   ä¸»é¢åé ââ æè±¡çç¼è¾æéè²ï¼ä¸è®¾è®¡ç¨¿ä¸è´ï¼
+   主题变量 —— 暖象牙编辑感配色（与设计稿一致）
    ============================================================ */
 @theme {
-  /* æ ¸å¿é¡µé¢åºè² */
+  /* 核心页面底色 */
   --color-background: #faf9f6;
   --color-foreground: #171412;
 
-  /* å¡ç / å®¹å¨è¡¨é¢ */
+  /* 卡片 / 容器表面 */
   --color-card: #ffffff;
   --color-card-foreground: #171412;
   --color-popover: #ffffff;
   --color-popover-foreground: #171412;
 
-  /* ä¸»è² ââ èµ¤é¶ / èµ­ç³ */
+  /* 主色 —— 赤陶 / 赭石 */
   --color-primary: #b85c38;
   --color-primary-foreground: #ffffff;
 
-  /* æå / æ¬¡è¦è¡¨é¢ */
+  /* 柔和 / 次要表面 */
   --color-muted: #f5f3ee;
   --color-muted-foreground: #5a5651;
 
-  /* è¾¹æ¡ä¸è¾å¥æ¡ */
+  /* 边框与输入框 */
   --color-border: #e8e4dc;
   --color-input: #e8e4dc;
   --color-ring: #b85c38;
 
-  /* åè§ */
+  /* 圆角 */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
 
-  /* å­ä½ */
+  /* 字体 */
   --font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
 }
 
 /* ============================================================
-   æè²ä¸»é¢ï¼å¢å¼ºå¤ç«¯ä½éªçå¯éä¸»é¢ï¼
+   暗色主题（增强多端体验的可选主题）
    ============================================================ */
 html.dark {
   --color-background: #171412;
@@ -56,7 +56,7 @@ html.dark {
 }
 
 /* ============================================================
-   åºç¡æ ·å¼
+   基础样式
    ============================================================ */
 @layer base {
   html {
@@ -82,10 +82,10 @@ html.dark {
 }
 
 /* ============================================================
-   éç¨ç»ä»¶æ ·å¼
+   通用组件样式
    ============================================================ */
 @layer components {
-  /* è·³è½¬é¾æ¥ï¼æ éç¢ï¼ */
+  /* 跳转链接（无障碍） */
   .skip-link {
     position: absolute;
     left: -9999px;
@@ -102,14 +102,14 @@ html.dark {
     top: 1rem;
   }
 
-  /* å®¹å¨ */
+  /* 容器 */
   .container {
     max-width: 72rem;
     margin-inline: auto;
     padding-inline: 1.5rem;
   }
 
-  /* åºå */
+  /* 区块 */
   .section {
     padding-block: 5rem;
   }
@@ -122,7 +122,7 @@ html.dark {
     background-color: color-mix(in srgb, var(--color-muted) 30%, transparent);
   }
 
-  /* ç½æ ¼ 12 æ  */
+  /* 网格 12 栏 */
   .grid-12 {
     display: grid;
     grid-template-columns: 1fr;
@@ -133,11 +133,11 @@ html.dark {
       grid-template-columns: repeat(12, 1fr);
       gap: 4rem;
     }
-    /* æ å®½è·¨åº¦æ¹ç¨ Tailwind ç md:col-span-* å·¥å·ç±»ï¼è§ index.htmlï¼ï¼
-       é¿åä¸ Tailwind v4 åç½®ç col-* å·¥å·ç±»ï¼grid-column: Nï¼å²çª */
+    /* 栏宽跨度改用 Tailwind 的 md:col-span-* 工具类（见页面模板），
+       避免与 Tailwind v4 内置的 col-* 工具类（grid-column: N）冲突 */
   }
 
-  /* çæ  */
+  /* 眉标 */
   .eyebrow {
     font-size: 0.875rem;
     font-weight: 500;
@@ -147,7 +147,7 @@ html.dark {
     margin-bottom: 0.75rem;
   }
 
-  /* åºåæ é¢ */
+  /* 区块标题 */
   .section-title {
     font-size: clamp(1.875rem, 3vw, 2.5rem);
     font-weight: 700;
@@ -155,7 +155,7 @@ html.dark {
     color: var(--color-foreground);
   }
 
-  /* åºåå¤´é¨ */
+  /* 区块头部 */
   .section-header {
     display: flex;
     flex-direction: column;
@@ -176,7 +176,7 @@ html.dark {
     max-width: 28rem;
   }
 
-  /* æé® */
+  /* 按钮 */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -212,7 +212,7 @@ html.dark {
     transform: translateX(0.25rem);
   }
 
-  /* å¾æ  */
+  /* 图标 */
   .icon {
     width: 1.25rem;
     height: 1.25rem;
@@ -236,7 +236,7 @@ html.dark {
     background-color: color-mix(in srgb, var(--color-muted) 60%, transparent);
   }
 
-  /* æ ç­¾ */
+  /* 标签 */
   .tag {
     display: inline-block;
     padding: 0.125rem 0.5rem;
@@ -253,7 +253,7 @@ html.dark {
 }
 
 /* ============================================================
-   å¯¼èªæ 
+   导航栏
    ============================================================ */
 .nav {
   position: fixed;
@@ -316,13 +316,13 @@ html.dark {
   gap: 0.25rem;
 }
 
-/* ä¸»é¢åæ¢å¾æ  */
+/* 主题切换图标 */
 .icon-sun { display: none; }
 .icon-moon { display: block; }
 html.dark .icon-sun { display: block; }
 html.dark .icon-moon { display: none; }
 
-/* ç§»å¨ç«¯èå */
+/* 移动端菜单 */
 .mobile-menu {
   border-top: 1px solid var(--color-border);
   background-color: var(--color-background);
@@ -345,7 +345,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   Hero é¦å±
+   Hero 首屏
    ============================================================ */
 .hero {
   padding-top: 8rem;
@@ -388,7 +388,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   å³äºæ
+   关于我
    ============================================================ */
 .about-text {
   color: var(--color-muted-foreground);
@@ -404,7 +404,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   ä½åå¡ç
+   作品卡片
    ============================================================ */
 .projects-grid {
   display: grid;
@@ -475,7 +475,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   æç« åè¡¨
+   文章列表
    ============================================================ */
 .article-list {
   border-top: 1px solid var(--color-border);
@@ -536,7 +536,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   èç³»ä¿¡æ¯
+   联系信息
    ============================================================ */
 .contact-list {
   display: flex;
@@ -585,7 +585,7 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   é¡µè
+   页脚
    ============================================================ */
 .footer {
   padding-block: 2.5rem;
@@ -625,7 +625,7 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   æ¬æµ®åå°é¡¶é¨
+   回到顶部按钮
    ============================================================ */
 .back-to-top {
   position: fixed;
@@ -662,7 +662,7 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   æ»å¨è¿å¥å¨ç»
+   滚动进入动画
    ============================================================ */
 .reveal {
   opacity: 0;
@@ -674,7 +674,7 @@ a.contact-item:hover .contact-value {
   transform: translateY(0);
 }
 
-/* ä½åå¡çä¾æ¬¡è¿å¥ */
+/* 作品卡片依次进入 */
 .project-card {
   opacity: 0;
   transform: translateY(1.5rem);
@@ -688,7 +688,7 @@ a.contact-item:hover .contact-value {
 .project-card:nth-child(2) { transition-delay: 0.1s; }
 .project-card:nth-child(3) { transition-delay: 0.2s; }
 
-/* æç« æ¡ç®ä¾æ¬¡è¿å¥ */
+/* 文章条目依次进入 */
 .article-item {
   opacity: 0;
   transform: translateY(1rem);
@@ -703,7 +703,7 @@ a.contact-item:hover .contact-value {
 .article-item:nth-child(3) { transition-delay: 0.16s; }
 .article-item:nth-child(4) { transition-delay: 0.24s; }
 
-/* èç³»æ¡ç®ä¾æ¬¡è¿å¥ */
+/* 联系条目依次进入 */
 .contact-item {
   opacity: 0;
   transform: translateY(1rem);
@@ -718,7 +718,7 @@ a.contact-item:hover .contact-value {
 .contact-item:nth-child(3) { transition-delay: 0.2s; }
 
 /* ============================================================
-   å¯è®¿é®æ§ï¼åå°å¨ç»åå¥½
+   可访问性：减少动画偏好
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -739,25 +739,25 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   å³äºææ¿åå®å¶ï¼é å·¦ + å¢å®½ + åé«ï¼ä»ä½ç¨äº #aboutï¼ä¸å½±åå¶ä»æ¿åï¼
+   关于我板块定制：靠左 + 增宽 + 减高（仅作用于 #about，不影响其他板块）
    ============================================================ */
 #about .container {
-  max-width: none;      /* åæ¶ 72rem éå®½ï¼åè®¸ææ»¡ */
-  margin-inline: 0;     /* åæ¶èªå¨å±ä¸­ â é å·¦ï¼ä¿ç 1.5rem åè¾¹è·é²æ­¢è´´è¾¹ï¼ */
+  max-width: none;      /* 取消 72rem 限宽，允许拉满 */
+  margin-inline: 0;     /* 取消自动居中 → 靠左（保留 1.5rem 内边距防止贴边） */
 }
 
 #about.section {
-  padding-block: 3rem;  /* ä¸ä¸çç½ 7rem/5rem â 3remï¼éä½æ¿åé«åº¦ */
+  padding-block: 3rem;  /* 上下留白 7rem/5rem → 3rem，降低板块高度 */
 }
 
 @media (min-width: 768px) {
-  /* æ é¢å 4â3 æ ï¼æå­å 8â9 æ ï¼è¦ç Tailwind ç md:col-span-*ï¼ */
+  /* 标题列 4→3 栏，文字列 8→9 栏（覆盖 Tailwind 的 md:col-span-*） */
   #about .grid-12 > :first-child { grid-column: span 3; }
   #about .about-text { grid-column: span 9; }
 }
 
 /* ============================================================
-   ¹Ì¶¨¸ñÊ½ÄÚÈÝÒ³£¨ÎÄÕÂ/×÷Æ·ÏêÇé¡¢ÎÄÕÂÁÐ±í£©
+   固定格式内容页（文章/作品详情、文章列表）
    ============================================================ */
 .content-page {
   min-height: 100vh;
