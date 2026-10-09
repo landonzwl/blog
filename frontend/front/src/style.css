@@ -1,43 +1,43 @@
 @import "tailwindcss";
 
 /* ============================================================
-   主题变量 —— 暖象牙编辑感配色（与设计稿一致）
+   ä¸»é¢åé ââ æè±¡çç¼è¾æéè²ï¼ä¸è®¾è®¡ç¨¿ä¸è´ï¼
    ============================================================ */
 @theme {
-  /* 核心页面底色 */
+  /* æ ¸å¿é¡µé¢åºè² */
   --color-background: #faf9f6;
   --color-foreground: #171412;
 
-  /* 卡片 / 容器表面 */
+  /* å¡ç / å®¹å¨è¡¨é¢ */
   --color-card: #ffffff;
   --color-card-foreground: #171412;
   --color-popover: #ffffff;
   --color-popover-foreground: #171412;
 
-  /* 主色 —— 赤陶 / 赭石 */
+  /* ä¸»è² ââ èµ¤é¶ / èµ­ç³ */
   --color-primary: #b85c38;
   --color-primary-foreground: #ffffff;
 
-  /* 柔和 / 次要表面 */
+  /* æå / æ¬¡è¦è¡¨é¢ */
   --color-muted: #f5f3ee;
   --color-muted-foreground: #5a5651;
 
-  /* 边框与输入框 */
+  /* è¾¹æ¡ä¸è¾å¥æ¡ */
   --color-border: #e8e4dc;
   --color-input: #e8e4dc;
   --color-ring: #b85c38;
 
-  /* 圆角 */
+  /* åè§ */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
 
-  /* 字体 */
+  /* å­ä½ */
   --font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
 }
 
 /* ============================================================
-   暗色主题（增强多端体验的可选主题）
+   æè²ä¸»é¢ï¼å¢å¼ºå¤ç«¯ä½éªçå¯éä¸»é¢ï¼
    ============================================================ */
 html.dark {
   --color-background: #171412;
@@ -56,7 +56,7 @@ html.dark {
 }
 
 /* ============================================================
-   基础样式
+   åºç¡æ ·å¼
    ============================================================ */
 @layer base {
   html {
@@ -82,10 +82,10 @@ html.dark {
 }
 
 /* ============================================================
-   通用组件样式
+   éç¨ç»ä»¶æ ·å¼
    ============================================================ */
 @layer components {
-  /* 跳转链接（无障碍） */
+  /* è·³è½¬é¾æ¥ï¼æ éç¢ï¼ */
   .skip-link {
     position: absolute;
     left: -9999px;
@@ -102,14 +102,14 @@ html.dark {
     top: 1rem;
   }
 
-  /* 容器 */
+  /* å®¹å¨ */
   .container {
     max-width: 72rem;
     margin-inline: auto;
     padding-inline: 1.5rem;
   }
 
-  /* 区块 */
+  /* åºå */
   .section {
     padding-block: 5rem;
   }
@@ -122,7 +122,7 @@ html.dark {
     background-color: color-mix(in srgb, var(--color-muted) 30%, transparent);
   }
 
-  /* 网格 12 栏 */
+  /* ç½æ ¼ 12 æ  */
   .grid-12 {
     display: grid;
     grid-template-columns: 1fr;
@@ -133,11 +133,11 @@ html.dark {
       grid-template-columns: repeat(12, 1fr);
       gap: 4rem;
     }
-    /* 栏宽跨度改用 Tailwind 的 md:col-span-* 工具类（见 index.html），
-       避免与 Tailwind v4 内置的 col-* 工具类（grid-column: N）冲突 */
+    /* æ å®½è·¨åº¦æ¹ç¨ Tailwind ç md:col-span-* å·¥å·ç±»ï¼è§ index.htmlï¼ï¼
+       é¿åä¸ Tailwind v4 åç½®ç col-* å·¥å·ç±»ï¼grid-column: Nï¼å²çª */
   }
 
-  /* 眉标 */
+  /* çæ  */
   .eyebrow {
     font-size: 0.875rem;
     font-weight: 500;
@@ -147,7 +147,7 @@ html.dark {
     margin-bottom: 0.75rem;
   }
 
-  /* 区块标题 */
+  /* åºåæ é¢ */
   .section-title {
     font-size: clamp(1.875rem, 3vw, 2.5rem);
     font-weight: 700;
@@ -155,7 +155,7 @@ html.dark {
     color: var(--color-foreground);
   }
 
-  /* 区块头部 */
+  /* åºåå¤´é¨ */
   .section-header {
     display: flex;
     flex-direction: column;
@@ -176,7 +176,7 @@ html.dark {
     max-width: 28rem;
   }
 
-  /* 按钮 */
+  /* æé® */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -212,7 +212,7 @@ html.dark {
     transform: translateX(0.25rem);
   }
 
-  /* 图标 */
+  /* å¾æ  */
   .icon {
     width: 1.25rem;
     height: 1.25rem;
@@ -236,7 +236,7 @@ html.dark {
     background-color: color-mix(in srgb, var(--color-muted) 60%, transparent);
   }
 
-  /* 标签 */
+  /* æ ç­¾ */
   .tag {
     display: inline-block;
     padding: 0.125rem 0.5rem;
@@ -253,7 +253,7 @@ html.dark {
 }
 
 /* ============================================================
-   导航栏
+   å¯¼èªæ 
    ============================================================ */
 .nav {
   position: fixed;
@@ -316,13 +316,13 @@ html.dark {
   gap: 0.25rem;
 }
 
-/* 主题切换图标 */
+/* ä¸»é¢åæ¢å¾æ  */
 .icon-sun { display: none; }
 .icon-moon { display: block; }
 html.dark .icon-sun { display: block; }
 html.dark .icon-moon { display: none; }
 
-/* 移动端菜单 */
+/* ç§»å¨ç«¯èå */
 .mobile-menu {
   border-top: 1px solid var(--color-border);
   background-color: var(--color-background);
@@ -345,7 +345,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   Hero 首屏
+   Hero é¦å±
    ============================================================ */
 .hero {
   padding-top: 8rem;
@@ -388,7 +388,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   关于我
+   å³äºæ
    ============================================================ */
 .about-text {
   color: var(--color-muted-foreground);
@@ -404,7 +404,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   作品卡片
+   ä½åå¡ç
    ============================================================ */
 .projects-grid {
   display: grid;
@@ -475,7 +475,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   文章列表
+   æç« åè¡¨
    ============================================================ */
 .article-list {
   border-top: 1px solid var(--color-border);
@@ -536,7 +536,7 @@ html.dark .icon-moon { display: none; }
 }
 
 /* ============================================================
-   联系信息
+   èç³»ä¿¡æ¯
    ============================================================ */
 .contact-list {
   display: flex;
@@ -585,7 +585,7 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   页脚
+   é¡µè
    ============================================================ */
 .footer {
   padding-block: 2.5rem;
@@ -625,7 +625,7 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   悬浮回到顶部
+   æ¬æµ®åå°é¡¶é¨
    ============================================================ */
 .back-to-top {
   position: fixed;
@@ -662,7 +662,7 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   滚动进入动画
+   æ»å¨è¿å¥å¨ç»
    ============================================================ */
 .reveal {
   opacity: 0;
@@ -674,7 +674,7 @@ a.contact-item:hover .contact-value {
   transform: translateY(0);
 }
 
-/* 作品卡片依次进入 */
+/* ä½åå¡çä¾æ¬¡è¿å¥ */
 .project-card {
   opacity: 0;
   transform: translateY(1.5rem);
@@ -688,7 +688,7 @@ a.contact-item:hover .contact-value {
 .project-card:nth-child(2) { transition-delay: 0.1s; }
 .project-card:nth-child(3) { transition-delay: 0.2s; }
 
-/* 文章条目依次进入 */
+/* æç« æ¡ç®ä¾æ¬¡è¿å¥ */
 .article-item {
   opacity: 0;
   transform: translateY(1rem);
@@ -703,7 +703,7 @@ a.contact-item:hover .contact-value {
 .article-item:nth-child(3) { transition-delay: 0.16s; }
 .article-item:nth-child(4) { transition-delay: 0.24s; }
 
-/* 联系条目依次进入 */
+/* èç³»æ¡ç®ä¾æ¬¡è¿å¥ */
 .contact-item {
   opacity: 0;
   transform: translateY(1rem);
@@ -718,7 +718,7 @@ a.contact-item:hover .contact-value {
 .contact-item:nth-child(3) { transition-delay: 0.2s; }
 
 /* ============================================================
-   可访问性：减少动画偏好
+   å¯è®¿é®æ§ï¼åå°å¨ç»åå¥½
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -739,19 +739,126 @@ a.contact-item:hover .contact-value {
 }
 
 /* ============================================================
-   关于我板块定制：靠左 + 增宽 + 减高（仅作用于 #about，不影响其他板块）
+   å³äºææ¿åå®å¶ï¼é å·¦ + å¢å®½ + åé«ï¼ä»ä½ç¨äº #aboutï¼ä¸å½±åå¶ä»æ¿åï¼
    ============================================================ */
 #about .container {
-  max-width: none;      /* 取消 72rem 限宽，允许拉满 */
-  margin-inline: 0;     /* 取消自动居中 → 靠左（保留 1.5rem 内边距防止贴边） */
+  max-width: none;      /* åæ¶ 72rem éå®½ï¼åè®¸ææ»¡ */
+  margin-inline: 0;     /* åæ¶èªå¨å±ä¸­ â é å·¦ï¼ä¿ç 1.5rem åè¾¹è·é²æ­¢è´´è¾¹ï¼ */
 }
 
 #about.section {
-  padding-block: 3rem;  /* 上下留白 7rem/5rem → 3rem，降低板块高度 */
+  padding-block: 3rem;  /* ä¸ä¸çç½ 7rem/5rem â 3remï¼éä½æ¿åé«åº¦ */
 }
 
 @media (min-width: 768px) {
-  /* 标题列 4→3 栏，文字列 8→9 栏（覆盖 Tailwind 的 md:col-span-*） */
+  /* æ é¢å 4â3 æ ï¼æå­å 8â9 æ ï¼è¦ç Tailwind ç md:col-span-*ï¼ */
   #about .grid-12 > :first-child { grid-column: span 3; }
   #about .about-text { grid-column: span 9; }
+}
+
+/* ============================================================
+   ¹Ì¶¨¸ñÊ½ÄÚÈÝÒ³£¨ÎÄÕÂ/×÷Æ·ÏêÇé¡¢ÎÄÕÂÁÐ±í£©
+   ============================================================ */
+.content-page {
+  min-height: 100vh;
+}
+/* 内容列表页不走首页滚动入场动画，避免 opacity:0 造成“空白页” */
+.content-page .article-item,
+.content-page .project-card {
+  opacity: 1;
+  transform: none;
+}
+.content-main {
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  max-width: 48rem;
+}
+/* 作品列表需要更宽以容纳卡片网格 */
+.content-page:has(.list-projects-grid) .content-main {
+  max-width: 72rem;
+}
+.section-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.content-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-muted-foreground);
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s ease;
+}
+.content-back:hover {
+  color: var(--color-primary);
+}
+.content-header {
+  margin-bottom: 1.5rem;
+}
+.content-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+  margin-bottom: 0.75rem;
+}
+.content-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.content-summary {
+  color: var(--color-muted-foreground);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.content-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.content-cover {
+  margin-top: 1.25rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.content-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.content-body {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  color: var(--color-foreground);
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+.content-list {
+  margin-top: 1rem;
+}
+.pre-line {
+  white-space: pre-line;
+}
+.section-title-link {
+  color: inherit;
+}
+.section-title-link:hover {
+  color: var(--color-primary);
+}
+.section-more {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+.project-card {
+  text-decoration: none;
+  color: inherit;
 }
