@@ -1,0 +1,40 @@
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: blog-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-zwl_dev_root_pwd}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-blog}
+      MYSQL_USER: ${MYSQL_USER:-blog}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-zwl_dev_pwd}
+      TZ: Asia/Shanghai
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --lower_case_table_names=1
+    ports:
+      - "127.0.0.1:13306:3306"       # 宿主 13306 -> 容器 3306，避开本地已装的 MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql    # 用命名卷，避免 Windows NTFS 初始化异常
+      - ./data/init:/docker-entrypoint-initdb.d
+    mem_limit: 512m
+
+  redis:
+    image: redis:alpine
+    container_name: blog-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD:-zwl_dev_redis}
+      --maxmemory 128mb
+      --maxmemory-policy allkeys-lru
+    ports:
+      - "127.0.0.1:16379:6379"       # 宿主 16379 -> 容器 6379，避开本地已装的 Redis
+    volumes:
+      - redis_data:/data
+    mem_limit: 192m
+
+volumes:
+  mysql_data:
+  redis_data:

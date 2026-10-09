@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:13306/blog?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    username: root
+    password: zwl_dev_root_pwd    # 对应 compose 的 MYSQL_ROOT_PASSWORD
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1
+    port: 16379
+    password: zwl_dev_redis
+    database: 0
+
+logging:
+  level:
+    com.workorder.back: debug
+    com.baomidou: debug
