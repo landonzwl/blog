@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS t_project (
   cover_url     VARCHAR(500) DEFAULT NULL,
   tag           VARCHAR(100) DEFAULT NULL,
   date_label    VARCHAR(100) DEFAULT NULL,
+  app_key       VARCHAR(64)  DEFAULT NULL,
   status        TINYINT      NOT NULL DEFAULT 0,
   sort_order    INT          NOT NULL DEFAULT 0,
   create_time   DATETIME     NOT NULL,
@@ -70,7 +71,7 @@ VALUES
 ('site.footer', '© 2025 张文龙. All rights reserved.', '页脚文案', 'site', 1, NOW(), NOW(), 0);
 
 INSERT INTO t_project
-  (title, summary, content, cover_url, tag, date_label, status, sort_order, create_time, update_time, deleted)
+  (title, summary, content, cover_url, tag, date_label, app_key, status, sort_order, create_time, update_time, deleted)
 VALUES
 (
   'RAG 智能工单系统',
@@ -79,6 +80,7 @@ VALUES
   '/assets/image_0_r53wpn.jpg',
   '个人项目',
   '2024.07 ~ 2024.08',
+  NULL,
   1,
   1,
   NOW(), NOW(), 0
@@ -86,10 +88,11 @@ VALUES
 (
   '轨道交通 iART 仿真平台',
   'CTCS-3 级列控系统联合仿真平台，参与 RBC 无线闭塞中心节点开发，实现消息按位编解码、闭塞区间定位与行车许可计算。',
-  '作品详情页占位内容，后续再完善技术细节与截图。',
+  '定制展示页由前端 showcase「rbc」承载。',
   '/assets/image_1_r53wpn.jpg',
   '实验室课题',
   '2025.07 ~ 2025.08',
+  'rbc',
   1,
   2,
   NOW(), NOW(), 0
@@ -101,6 +104,7 @@ VALUES
   '/assets/image_2_r53wpn.jpg',
   '校内实践',
   '2024.09 ~ 2025.10',
+  NULL,
   1,
   3,
   NOW(), NOW(), 0

@@ -34,6 +34,7 @@ const projectForm = reactive({
   coverUrl: '',
   tag: '',
   dateLabel: '',
+  appKey: '',
   status: 1,
   sortOrder: 0,
 })
@@ -136,6 +137,7 @@ function resetProjectForm() {
   projectForm.coverUrl = ''
   projectForm.tag = ''
   projectForm.dateLabel = ''
+  projectForm.appKey = ''
   projectForm.status = 1
   projectForm.sortOrder = 0
 }
@@ -151,6 +153,7 @@ async function onEditProject(id) {
     projectForm.coverUrl = detail.coverUrl || ''
     projectForm.tag = detail.tag || ''
     projectForm.dateLabel = detail.dateLabel || ''
+    projectForm.appKey = detail.appKey || ''
     projectForm.status = detail.status ?? 1
     projectForm.sortOrder = detail.sortOrder ?? 0
     tab.value = 'projects'
@@ -168,6 +171,7 @@ async function onSubmitProject() {
     coverUrl: projectForm.coverUrl || null,
     tag: projectForm.tag || null,
     dateLabel: projectForm.dateLabel || null,
+    appKey: projectForm.appKey || null,
     status: Number(projectForm.status),
     sortOrder: Number(projectForm.sortOrder) || 0,
   }
@@ -329,6 +333,10 @@ onMounted(() => {
         <label>
           时间文案
           <input v-model="projectForm.dateLabel" maxlength="100" placeholder="2024.07 ~ 2024.08" />
+        </label>
+        <label>
+          定制页标识
+          <input v-model="projectForm.appKey" maxlength="64" placeholder="留空为通用详情，如 rbc" />
         </label>
         <label>
           排序

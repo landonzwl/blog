@@ -11,10 +11,12 @@ target/
 .idea/
 *.iml
 
-# Docker 本地数据（保留 init SQL 可提交）
+# Docker 本地数据（保留 init 与增量迁移 SQL 可提交）
 /data/*
 !/data/init/
 !/data/init/**
+!/data/migrate/
+!/data/migrate/**
 
 # 环境变量（含密码、JWT 密钥，禁止提交）
 .env

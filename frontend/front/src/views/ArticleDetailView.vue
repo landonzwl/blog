@@ -4,6 +4,7 @@ import { fetchPublishedArticle } from '@/api/article'
 import { fetchSiteContent } from '@/api/site'
 import PageShell from '@/components/PageShell.vue'
 import { formatDateTime, splitTags } from '@/utils/format'
+import { renderMarkdown } from '@/utils/markdown'
 
 const props = defineProps({
   id: { type: [String, Number], required: true },
@@ -54,7 +55,7 @@ watch(() => props.id, load)
           <span v-for="tag in splitTags(article.tags)" :key="tag" class="tag tag-muted">{{ tag }}</span>
         </div>
       </header>
-      <div class="content-body">{{ article.content }}</div>
+      <div class="content-body md-body" v-html="renderMarkdown(article.content)"></div>
     </article>
   </PageShell>
 </template>

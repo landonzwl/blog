@@ -97,6 +97,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setCoverUrl(trimToNull(request.getCoverUrl()));
         project.setTag(trimToNull(request.getTag()));
         project.setDateLabel(trimToNull(request.getDateLabel()));
+        project.setAppKey(trimToNull(request.getAppKey()));
         project.setStatus(request.getStatus());
         project.setSortOrder(request.getSortOrder() == null ? 0 : request.getSortOrder());
     }
@@ -127,6 +128,7 @@ public class ProjectServiceImpl implements ProjectService {
         vo.setCoverUrl(p.getCoverUrl());
         vo.setTag(p.getTag());
         vo.setDateLabel(p.getDateLabel());
+        vo.setAppKey(p.getAppKey());
         vo.setStatus(p.getStatus());
         vo.setSortOrder(p.getSortOrder());
         vo.setUpdateTime(p.getUpdateTime());
@@ -142,6 +144,7 @@ public class ProjectServiceImpl implements ProjectService {
         vo.setCoverUrl(p.getCoverUrl());
         vo.setTag(p.getTag());
         vo.setDateLabel(p.getDateLabel());
+        vo.setAppKey(p.getAppKey());
         vo.setStatus(p.getStatus());
         vo.setSortOrder(p.getSortOrder());
         vo.setCreateTime(p.getCreateTime());

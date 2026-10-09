@@ -10,6 +10,7 @@ public class ProjectVO {
     private String coverUrl;
     private String tag;
     private String dateLabel;
+    private String appKey;
     private Integer status;
     private Integer sortOrder;
     private LocalDateTime updateTime;
@@ -26,6 +27,8 @@ public class ProjectVO {
     public void setTag(String tag) { this.tag = tag; }
     public String getDateLabel() { return dateLabel; }
     public void setDateLabel(String dateLabel) { this.dateLabel = dateLabel; }
+    public String getAppKey() { return appKey; }
+    public void setAppKey(String appKey) { this.appKey = appKey; }
     public Integer getStatus() { return status; }
     public void setStatus(Integer status) { this.status = status; }
     public Integer getSortOrder() { return sortOrder; }

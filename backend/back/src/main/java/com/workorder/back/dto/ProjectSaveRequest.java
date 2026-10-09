@@ -27,6 +27,9 @@ public class ProjectSaveRequest {
     @Size(max = 100, message = "时间文案过长")
     private String dateLabel;
 
+    @Size(max = 64, message = "应用标识过长")
+    private String appKey;
+
     @NotNull(message = "状态不能为空")
     @Min(0) @Max(1)
     private Integer status;
@@ -45,6 +48,8 @@ public class ProjectSaveRequest {
     public void setTag(String tag) { this.tag = tag; }
     public String getDateLabel() { return dateLabel; }
     public void setDateLabel(String dateLabel) { this.dateLabel = dateLabel; }
+    public String getAppKey() { return appKey; }
+    public void setAppKey(String appKey) { this.appKey = appKey; }
     public Integer getStatus() { return status; }
     public void setStatus(Integer status) { this.status = status; }
     public Integer getSortOrder() { return sortOrder; }
