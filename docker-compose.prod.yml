@@ -75,7 +75,7 @@ services:
       - |
         set -eu
         mysql -hmysql -uroot --default-character-set=utf8mb4 --connect-timeout=20 -e "CREATE DATABASE IF NOT EXISTS np DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; GRANT ALL PRIVILEGES ON np.* TO '$$NP_APP_USER'@'%'; FLUSH PRIVILEGES;"
-        mysql -hmysql -uroot --default-character-set=utf8mb4 "$$BLOG_DATABASE" -e "UPDATE t_project SET title='企业管理系统', summary='覆盖销售、采购、库存、生产、财务、人事与排班。单据和审批存在 MySQL，排班由 CP-SAT 求解，打开作品即可试用。', date_label='2024.09 ~ 2026.10', update_time=NOW() WHERE app_key='np' AND deleted=0;"
+        mysql -hmysql -uroot --default-character-set=utf8mb4 "$$BLOG_DATABASE" -e "UPDATE t_project SET app_key='np', title='企业管理系统', summary='覆盖销售、采购、库存、生产、财务、人事与排班。单据和审批存在 MySQL，排班由 CP-SAT 求解，打开作品即可试用。', date_label='2024.09 ~ 2026.10', update_time=NOW() WHERE deleted=0 AND (app_key='np' OR title='智能排班系统');"
 
   np:
     build:
