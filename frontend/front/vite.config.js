@@ -9,6 +9,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@np': fileURLToPath(new URL('../../NP/src', import.meta.url)),
+      vue: fileURLToPath(new URL('./node_modules/vue', import.meta.url)),
+      'vue-router': fileURLToPath(new URL('./node_modules/vue-router', import.meta.url)),
     },
   },
   server: {
