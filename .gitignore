@@ -24,3 +24,10 @@ target/
 # 系统杂项
 .DS_Store
 Thumbs.db
+
+# 企业管理系统的本地残留，不进入部署仓库
+NP/untitled/
+NP/task-dump.txt
+NP/NPend/
+*.mv.db
+*.trace.db

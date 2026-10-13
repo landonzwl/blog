@@ -1,0 +1,24 @@
+CREATE TABLE IF NOT EXISTS np_user (
+  id VARCHAR(32) NOT NULL PRIMARY KEY,
+  username VARCHAR(32) NOT NULL,
+  password_hash VARCHAR(100) NOT NULL,
+  role VARCHAR(16) NOT NULL,
+  staff_id VARCHAR(32) NOT NULL,
+  display_name VARCHAR(64) NOT NULL,
+  enabled TINYINT NOT NULL,
+  CONSTRAINT uk_np_user_name UNIQUE (username)
+);
+
+CREATE TABLE IF NOT EXISTS np_session (
+  token_hash VARCHAR(64) NOT NULL PRIMARY KEY,
+  user_id VARCHAR(32) NOT NULL,
+  expires_at BIGINT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS np_audit (
+  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  at_ms BIGINT NOT NULL,
+  username VARCHAR(32) NOT NULL,
+  action VARCHAR(64) NOT NULL,
+  detail VARCHAR(255) NOT NULL
+);

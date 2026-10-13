@@ -8,12 +8,17 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@np': fileURLToPath(new URL('../../NP/src', import.meta.url)),
     },
   },
   server: {
     host: true,
     open: false,
     proxy: {
+      '/api/np': {
+        target: 'http://127.0.0.1:8081',
+        changeOrigin: true,
+      },
       '/api': {
         target: 'http://127.0.0.1:8080',
         changeOrigin: true,

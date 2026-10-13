@@ -3,6 +3,7 @@ import { defineAsyncComponent } from 'vue'
 /** app_key → 异步定制页组件 */
 const showcaseRegistry = {
   rbc: defineAsyncComponent(() => import('./rbc/RbcShowcaseView.vue')),
+  np: defineAsyncComponent(() => import('./np/NpShowcase.vue')),
 }
 
 export function resolveShowcase(appKey) {

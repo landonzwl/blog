@@ -1,0 +1,25 @@
+server:
+  port: 8081
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  application:
+    name: np-schedule
+  datasource:
+    url: ${NP_DB_URL:jdbc:mysql://host.docker.internal:13306/np?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true&useUnicode=true}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${NP_DB_USER:root}
+    password: ${NP_DB_PASSWORD:zwl_dev_root_pwd}
+  jackson:
+    time-zone: Asia/Shanghai
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
+  sql:
+    init:
+      mode: never

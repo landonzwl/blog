@@ -1,0 +1,16 @@
+.git
+node_modules
+**/node_modules
+dist
+**/dist
+target
+**/target
+.idea
+**/.idea
+data
+NP/server
+NP/untitled
+NP/task-dump.txt
+NP/dist
+*.mv.db
+*.trace.db

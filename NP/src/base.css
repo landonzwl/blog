@@ -1,0 +1,24 @@
+:root {
+  --color-background: #faf9f6;
+  --color-foreground: #171412;
+  --color-card: #ffffff;
+  --color-primary: #b85c38;
+  --color-primary-foreground: #ffffff;
+  --color-muted: #f5f3ee;
+  --color-muted-foreground: #5a5651;
+  --color-border: #e8e4dc;
+  --color-input: #e8e4dc;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-background);
+  color: var(--color-foreground);
+}

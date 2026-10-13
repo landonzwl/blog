@@ -1,4 +1,4 @@
-# 生产编排：MySQL + Redis + API + 前端 Nginx
+# 生产编排：MySQL + Redis + 博客 API + 企业管理系统 + 前端 Nginx
 # 用法：docker compose -f docker-compose.prod.yml --env-file .env up -d --build
 services:
   mysql:
@@ -59,14 +59,58 @@ services:
       JAVA_OPTS: "-Xms128m -Xmx384m"
     mem_limit: 512m
 
+  np-db:
+    image: mysql:5.7
+    container_name: blog-np-db
+    restart: "no"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      MYSQL_PWD: ${MYSQL_ROOT_PASSWORD}
+      NP_APP_USER: ${MYSQL_USER}
+      BLOG_DATABASE: ${MYSQL_DATABASE:-blog}
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        set -eu
+        mysql -hmysql -uroot --default-character-set=utf8mb4 --connect-timeout=20 -e "CREATE DATABASE IF NOT EXISTS np DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; GRANT ALL PRIVILEGES ON np.* TO '$$NP_APP_USER'@'%'; FLUSH PRIVILEGES;"
+        mysql -hmysql -uroot --default-character-set=utf8mb4 "$$BLOG_DATABASE" -e "UPDATE t_project SET title='企业管理系统', summary='覆盖销售、采购、库存、生产、财务、人事与排班。单据和审批存在 MySQL，排班由 CP-SAT 求解，打开作品即可试用。', date_label='2024.09 ~ 2026.10', update_time=NOW() WHERE app_key='np' AND deleted=0;"
+
+  np:
+    build:
+      context: ./NP/server
+      dockerfile: Dockerfile
+    container_name: blog-np
+    restart: unless-stopped
+    depends_on:
+      np-db:
+        condition: service_completed_successfully
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      NP_DB_URL: jdbc:mysql://mysql:3306/np?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true&useUnicode=true
+      NP_DB_USER: ${MYSQL_USER}
+      NP_DB_PASSWORD: ${MYSQL_PASSWORD}
+      JAVA_OPTS: "-Xms64m -Xmx256m"
+    mem_limit: 768m
+    healthcheck:
+      test: ["CMD", "bash", "-c", "echo >/dev/tcp/127.0.0.1/8081"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 60s
+
   web:
     build:
-      context: ./frontend/front
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: frontend/front/Dockerfile
     container_name: blog-web
     restart: unless-stopped
     depends_on:
-      - api
+      api:
+        condition: service_started
+      np:
+        condition: service_healthy
     ports:
       - "80:80"
     mem_limit: 64m

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: ${NP_DB_URL}
+    username: ${NP_DB_USER}
+    password: ${NP_DB_PASSWORD}
+
+np:
+  seed: false
