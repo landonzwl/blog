@@ -4,6 +4,7 @@ import { defineAsyncComponent } from 'vue'
 const showcaseRegistry = {
   rbc: defineAsyncComponent(() => import('./rbc/RbcShowcaseView.vue')),
   np: defineAsyncComponent(() => import('./np/NpShowcase.vue')),
+  rag: defineAsyncComponent(() => import('./rag/RagShowcase.vue')),
 }
 
 export function resolveShowcase(appKey) {

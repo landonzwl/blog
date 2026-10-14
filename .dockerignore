@@ -9,6 +9,8 @@ target
 **/.idea
 data
 NP/server
+RAG/.tools
+RAG/RAG/.git
 NP/untitled
 NP/task-dump.txt
 NP/dist

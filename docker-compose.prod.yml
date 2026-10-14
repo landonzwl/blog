@@ -1,4 +1,4 @@
-# 生产编排：MySQL + Redis + 博客 API + 企业管理系统 + 前端 Nginx
+# 生产编排：MySQL + Redis + 博客 API + 企业管理系统 + RAG 工单 + 前端 Nginx
 # 用法：docker compose -f docker-compose.prod.yml --env-file .env up -d --build
 services:
   mysql:
@@ -74,8 +74,8 @@ services:
     command:
       - |
         set -eu
-        mysql -hmysql -uroot --default-character-set=utf8mb4 --connect-timeout=20 -e "CREATE DATABASE IF NOT EXISTS np DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; GRANT ALL PRIVILEGES ON np.* TO '$$NP_APP_USER'@'%'; FLUSH PRIVILEGES;"
-        mysql -hmysql -uroot --default-character-set=utf8mb4 "$$BLOG_DATABASE" -e "UPDATE t_project SET app_key='np', title='企业管理系统', summary='覆盖销售、采购、库存、生产、财务、人事与排班。单据和审批存在 MySQL，排班由 CP-SAT 求解，打开作品即可试用。', date_label='2024.09 ~ 2026.10', update_time=NOW() WHERE deleted=0 AND (app_key='np' OR title='智能排班系统');"
+        mysql -hmysql -uroot --default-character-set=utf8mb4 --connect-timeout=20 -e "CREATE DATABASE IF NOT EXISTS np DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; CREATE DATABASE IF NOT EXISTS rag_ticket DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; GRANT ALL PRIVILEGES ON np.* TO '$$NP_APP_USER'@'%'; GRANT ALL PRIVILEGES ON rag_ticket.* TO '$$NP_APP_USER'@'%'; FLUSH PRIVILEGES;"
+        mysql -hmysql -uroot --default-character-set=utf8mb4 "$$BLOG_DATABASE" -e "UPDATE t_project SET app_key='np', title='企业管理系统', summary='覆盖销售、采购、库存、生产、财务、人事与排班。单据和审批存在 MySQL，排班由 CP-SAT 求解，打开作品即可试用。', date_label='2024.09 ~ 2026.10', update_time=NOW() WHERE deleted=0 AND (app_key='np' OR title='智能排班系统'); UPDATE t_project SET app_key='rag', content='定制展示页由前端 showcase「rag」承载。', update_time=NOW() WHERE deleted=0 AND (app_key='rag' OR title='RAG 智能工单系统');"
 
   np:
     build:
@@ -100,6 +100,40 @@ services:
       retries: 18
       start_period: 60s
 
+  rag:
+    build:
+      context: ./RAG/RAG
+      dockerfile: Dockerfile
+    container_name: blog-rag
+    restart: unless-stopped
+    depends_on:
+      np-db:
+        condition: service_completed_successfully
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      MYSQL_DB: rag_ticket
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/rag_ticket?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE: "4"
+      SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE: "1"
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_BASE_URL: ${AI_BASE_URL:-https://api.deepseek.com/v1}
+      AI_CHAT_MODEL: ${AI_CHAT_MODEL:-deepseek-chat}
+      AI_EMBEDDING_API_KEY: ${AI_EMBEDDING_API_KEY:-}
+      AI_EMBEDDING_BASE_URL: ${AI_EMBEDDING_BASE_URL:-https://dashscope.aliyuncs.com/compatible-mode/v1}
+      AI_EMBEDDING_MODEL: ${AI_EMBEDDING_MODEL:-text-embedding-v3}
+      JAVA_OPTS: "-Xms64m -Xmx256m -XX:MaxMetaspaceSize=128m -XX:+UseG1GC"
+      TZ: Asia/Shanghai
+    mem_limit: 448m
+    healthcheck:
+      test: ["CMD", "bash", "-c", "echo >/dev/tcp/127.0.0.1/8080"]
+      interval: 10s
+      timeout: 5s
+      retries: 24
+      start_period: 90s
+
   web:
     build:
       context: .
@@ -110,6 +144,8 @@ services:
       api:
         condition: service_started
       np:
+        condition: service_healthy
+      rag:
         condition: service_healthy
     ports:
       - "80:80"

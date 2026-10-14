@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rag-ticket
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:rag_ticket}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 8
+      minimum-idle: 2
+  sql:
+    init:
+      mode: always
+      encoding: utf-8
+      separator: ";"
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+
+# ============ AI 接入配置（OpenAI 兼容协议，服务器不部署任何模型） ============
+# 对话模型：默认 DeepSeek；可换成任意兼容服务（智谱/通义/Kimi 等）
+# 向量模型：默认阿里云 DashScope 兼容模式；DeepSeek 不提供 embedding，故单独配置
+ai:
+  base-url: ${AI_BASE_URL:https://api.deepseek.com/v1}
+  api-key: ${AI_API_KEY:}
+  chat-model: ${AI_CHAT_MODEL:deepseek-chat}
+  embedding-base-url: ${AI_EMBEDDING_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+  embedding-api-key: ${AI_EMBEDDING_API_KEY:${AI_API_KEY:}}
+  embedding-model: ${AI_EMBEDDING_MODEL:text-embedding-v3}
+
+# ============ RAG 检索配置 ============
+rag:
+  top-k: 5
+  chunk-size: 500
+  chunk-overlap: 80
+  min-score: 0.25
+
+# ============ 会话 / Agent 配置 ============
+chat:
+  history-limit: 12
+  max-tool-rounds: 4
+
+logging:
+  level:
+    com.rag: info

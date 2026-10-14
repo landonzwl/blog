@@ -25,6 +25,10 @@ target/
 .DS_Store
 Thumbs.db
 
+# RAG 本地工具和内嵌仓库，不进入部署仓库
+RAG/.tools/
+RAG/RAG/.git/
+
 # 企业管理系统的本地残留，不进入部署仓库
 NP/untitled/
 NP/task-dump.txt

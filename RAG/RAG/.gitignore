@@ -1,0 +1,16 @@
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+.idea/
+*.iml
+out/
+.vscode/
+.DS_Store
+
+logs/
+*.log
+
+# 本地工具目录与 AI 配置（含敏感 Key），不入库
+.tools/

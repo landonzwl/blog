@@ -17,6 +17,31 @@ export default defineConfig({
     host: true,
     open: false,
     proxy: {
+      '/rag': {
+        target: 'http://127.0.0.1:18080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/rag/, ''),
+      },
+      '/api/chat': {
+        target: 'http://127.0.0.1:18080',
+        changeOrigin: true,
+      },
+      '/api/tickets': {
+        target: 'http://127.0.0.1:18080',
+        changeOrigin: true,
+      },
+      '/api/auth': {
+        target: 'http://127.0.0.1:18080',
+        changeOrigin: true,
+      },
+      '/api/admin/tickets': {
+        target: 'http://127.0.0.1:18080',
+        changeOrigin: true,
+      },
+      '/api/admin/knowledge': {
+        target: 'http://127.0.0.1:18080',
+        changeOrigin: true,
+      },
       '/api/np': {
         target: 'http://127.0.0.1:8081',
         changeOrigin: true,
