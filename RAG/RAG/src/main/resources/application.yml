@@ -25,15 +25,14 @@ mybatis-plus:
     banner: false
 
 # ============ AI 接入配置（OpenAI 兼容协议，服务器不部署任何模型） ============
-# 对话模型：默认 DeepSeek；可换成任意兼容服务（智谱/通义/Kimi 等）
-# 向量模型：默认阿里云 DashScope 兼容模式；DeepSeek 不提供 embedding，故单独配置
+# 默认硅基流动（对话 + 向量同一家）。可换成 DeepSeek/智谱/通义等，需同步改 URL 与模型名。
 ai:
-  base-url: ${AI_BASE_URL:https://api.deepseek.com/v1}
+  base-url: ${AI_BASE_URL:https://api.siliconflow.cn/v1}
   api-key: ${AI_API_KEY:}
-  chat-model: ${AI_CHAT_MODEL:deepseek-chat}
-  embedding-base-url: ${AI_EMBEDDING_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+  chat-model: ${AI_CHAT_MODEL:zai-org/GLM-5.3-Flash}
+  embedding-base-url: ${AI_EMBEDDING_BASE_URL:https://api.siliconflow.cn/v1}
   embedding-api-key: ${AI_EMBEDDING_API_KEY:${AI_API_KEY:}}
-  embedding-model: ${AI_EMBEDDING_MODEL:text-embedding-v3}
+  embedding-model: ${AI_EMBEDDING_MODEL:Qwen/Qwen3-Embedding-8B}
 
 # ============ RAG 检索配置 ============
 rag:
